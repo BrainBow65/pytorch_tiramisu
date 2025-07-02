@@ -60,7 +60,7 @@ def error(preds, targets):
     n_pixels = bs * h * w
     incorrect = preds.ne(targets).cpu().sum()
     err = incorrect / n_pixels
-    return round(err, 5)
+    return round(err.item(), 5)
 
 
 def train(model, trn_loader, optimizer, criterion, epoch):
@@ -77,7 +77,7 @@ def train(model, trn_loader, optimizer, criterion, epoch):
         loss.backward()
         optimizer.step()
 
-        trn_loss += loss.data[0]
+        trn_loss += loss.item()
         pred = get_predictions(output)
         trn_error += error(pred, targets.data.cpu())
 
@@ -94,7 +94,7 @@ def test(model, test_loader, criterion, epoch=1):
         data = Variable(data.cuda(), volatile=True)
         target = Variable(target.cuda())
         output = model(data)
-        test_loss += criterion(output, target).data[0]
+        test_loss += criterion(output, target).item()
         pred = get_predictions(output)
         test_error += error(pred, target.data.cpu())
     test_loss /= len(test_loader)
