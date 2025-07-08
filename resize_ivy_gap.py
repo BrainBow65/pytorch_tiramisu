@@ -17,12 +17,12 @@ palette_img = Image.new("P", (1, 1))
 palette_img.putpalette(palette)
 
 DIR_ANNOTATED = Path("Ivy_gap_dataset/Annotated")
-DIR_HE = Path("Ivy_gap_dataset/HE")
+DIR_HE = Path("Ivy_gap_dataset/H&Es")
 
 DIR_RESIZED_HE = Path(DIR_HE / "Resized")
 DIR_RESIZED_HE.mkdir(exist_ok=True)
 
-DIR_RESIZED_ANNOTATED = Path(DIR_ANNOTATED / "Resized_annotated")
+DIR_RESIZED_ANNOTATED = Path(DIR_ANNOTATED / "Resized")
 DIR_RESIZED_ANNOTATED.mkdir(exist_ok=True)
 
 for f_annotated, f_he in zip(DIR_ANNOTATED.glob("*.jpg"), DIR_HE.glob("*.jpg")):
@@ -33,4 +33,4 @@ for f_annotated, f_he in zip(DIR_ANNOTATED.glob("*.jpg"), DIR_HE.glob("*.jpg")):
 
     image_he = Image.open(f_he)
     image_he = image_he.resize(SIZE, resample=Image.NEAREST)
-    image_he.save(DIR_RESIZED_ANNOTATED / f_he.name)
+    image_he.save(DIR_RESIZED_HE / f_he.name)
