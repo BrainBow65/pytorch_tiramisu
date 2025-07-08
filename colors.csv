@@ -1,0 +1,10 @@
+[0,114,201], GBM
+[33,143,165], Leading Edge Region
+[255,102,0], Hyperplastic blood vessels
+[209, 4, 208], infiltrating tumor region
+[5,208,4], Cellular tumor region
+[67,209,248], Perinecrotic zone
+[5,4,208], Pseudopalisading cells but no visible necrosis
+[5,208,170], Pseudopalisading cells around necrosis
+[255,51,0], Microvascular Proliferation
+[6,5,5], Necrosis
