@@ -28,7 +28,7 @@ train_images = image_names[n_test + n_val:]
 for annot_img in test_images:
     try:
         he_img_name = annot_img.name.split('_')
-        he_img_name[1]='HE'
+        he_img_name[1] = 'HE'
         he_img_name = '_'.join(he_img_name)
         he_img = ROOT_DIR/"H&Es"/"Resized"/he_img_name
         shutil.copy2(he_img, TEST_DIR / he_img.name)
