@@ -6,6 +6,13 @@ random.seed(10)
 ROOT_DIR = Path("Ivy_gap_dataset")
 TEST_DIR = ROOT_DIR/"test"
 TESTANNOT_DIR = ROOT_DIR/"testannot"
+VAL_DIR = ROOT_DIR/"val"
+VALANNOT_DIR = ROOT_DIR/"valannot"
+TRAIN_DIR = ROOT_DIR/"train"
+TRAINANNOT_DIR = ROOT_DIR/"trainannot"
+
+for directory in [TEST_DIR, TESTANNOT_DIR, VAL_DIR, VALANNOT_DIR, TRAIN_DIR, TRAINANNOT_DIR]:
+    directory.mkdir(parents=True, exist_ok=True)
 
 percent_test = 0.05
 percent_val = 0.05
@@ -35,3 +42,37 @@ for annot_img in test_images:
         shutil.copy2(annot_img, TESTANNOT_DIR / annot_img.name)
     except FileNotFoundError:
         print(f"{he_img} not found")
+
+for annot_img in val_images:
+    try:
+        he_img_name = annot_img.name.split('_')
+        he_img_name[1] = 'HE'
+        he_img_name = '_'.join(he_img_name)
+        he_img = ROOT_DIR/"H&Es"/"Resized"/he_img_name
+        shutil.copy2(he_img,  VAL_DIR / he_img.name)
+        shutil.copy2(annot_img, VALANNOT_DIR / annot_img.name)
+    except FileNotFoundError:
+        print(f"{he_img} not found")
+
+for annot_img in train_images:
+    try:
+        he_img_name = annot_img.name.split('_')
+        he_img_name[1] = 'HE'
+        he_img_name = '_'.join(he_img_name)
+        he_img = ROOT_DIR/"H&Es"/"Resized"/he_img_name
+        shutil.copy2(he_img,  TRAIN_DIR / he_img.name)
+        shutil.copy2(annot_img, TRAINANNOT_DIR / annot_img.name)
+    except FileNotFoundError:
+        print(f"{he_img} not found")
+
+n_test_img = len(list(TEST_DIR.glob("*.jpg")))
+n_test_img_annot = len(list(TESTANNOT_DIR.glob("*.jpg")))
+assert n_test_img == n_test_img_annot == n_test
+
+n_train_img = len(list(TRAIN_DIR.glob("*.jpg")))
+n_train_img_annot = len(list(TRAINANNOT_DIR.glob("*.jpg")))
+assert n_train_img == n_train_img_annot == n_train
+
+n_val_img = len(list(VAL_DIR.glob("*.jpg")))
+n_val_img_annot = len(list(VALANNOT_DIR.glob("*.jpg")))
+assert n_val_img == n_val_img_annot == n_val
