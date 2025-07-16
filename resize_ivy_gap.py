@@ -28,9 +28,11 @@ DIR_RESIZED_ANNOTATED.mkdir(exist_ok=True)
 for f_annotated, f_he in zip(DIR_ANNOTATED.glob("*.jpg"), DIR_HE.glob("*.jpg")):
     image_annotated = Image.open(f_annotated)
     image_annotated = image_annotated.resize(SIZE, resample=Image.NEAREST)
-    image_annotated = image_annotated.quantize(palette=palette_img).convert("RGB")
-    image_annotated.save(DIR_RESIZED_ANNOTATED / f_annotated.name)
+    image_annotated = image_annotated.quantize(palette=palette_img)
+    image_annotated.save(
+        DIR_RESIZED_ANNOTATED / f_annotated.name.replace(".jpg", ".png")
+    )
 
     image_he = Image.open(f_he)
     image_he = image_he.resize(SIZE, resample=Image.NEAREST)
-    image_he.save(DIR_RESIZED_HE / f_he.name)
+    image_he.save(DIR_RESIZED_HE / f_he.name.replace(".jpg", ".png"))
