@@ -17,6 +17,7 @@ classes = [
     "Pseudopalisading cells around necrosis",
     "Microvascular Proliferation",
     "Necrosis",
+    "Background"
 ]
 
 class_color = [
@@ -30,6 +31,7 @@ class_color = [
     (5, 208, 170),
     (255, 51, 0),
     (6, 5, 5),
+    (255, 255, 255)
 ]
 
 
@@ -62,6 +64,7 @@ class IvyGap(data.Dataset):
         self.target_transform = target_transform
         self.loader = loader
         self.imgs = list((self.root / self.split).glob("*.png"))
+        self.classes = classes
 
     def __getitem__(self, index):
         path = str(self.imgs[index])
