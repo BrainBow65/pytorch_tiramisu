@@ -4,7 +4,7 @@ import random
 
 random.seed(10)
 
-ROOT_DIR = Path("Ivy_gap_dataset")
+ROOT_DIR = Path("../Ivy_gap_dataset")
 TEST_DIR = ROOT_DIR / "test"
 TESTANNOT_DIR = ROOT_DIR / "testannot"
 VAL_DIR = ROOT_DIR / "val"
