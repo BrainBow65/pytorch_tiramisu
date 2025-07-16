@@ -61,7 +61,7 @@ class IvyGap(data.Dataset):
         self.transform = transform
         self.target_transform = target_transform
         self.loader = loader
-        self.imgs = list((self.root / self.split).glob("*.jpg"))
+        self.imgs = list((self.root / self.split).glob("*.png"))
 
     def __getitem__(self, index):
         path = str(self.imgs[index])

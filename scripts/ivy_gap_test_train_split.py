@@ -4,7 +4,7 @@ import random
 
 random.seed(10)
 
-ROOT_DIR = Path("../Ivy_gap_dataset")
+ROOT_DIR = Path(__file__).parent.parent/"Ivy_gap_dataset"
 TEST_DIR = ROOT_DIR / "test"
 TESTANNOT_DIR = ROOT_DIR / "testannot"
 VAL_DIR = ROOT_DIR / "val"
@@ -27,6 +27,7 @@ percent_val = 0.05
 percent_train = 0.9
 
 image_names = list((ROOT_DIR / "Annotated" / "Resized").glob("*.png"))
+print(ROOT_DIR)
 # image_names = [i.name.split('_')[-1] for i in image_names]
 # specimen_names = [i.split('_')[0] for i in image_names]
 random.shuffle(image_names)

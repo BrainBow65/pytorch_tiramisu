@@ -4,7 +4,7 @@ import requests
 # Set up the base URL for the API
 BASE_URL = "http://api.brain-map.org/api/v2/data/query.json"
 
-SAVE_DIR = Path("../Ivy_gap_dataset")
+SAVE_DIR = Path(__file__).parent.parent/"Ivy_gap_dataset"
 SAVE_DIR_HE = SAVE_DIR / "H&Es"
 SAVE_DIR_ANNOTATED = SAVE_DIR / "Annotated"
 SAVE_DIR_HE.mkdir(parents=True, exist_ok=True)
