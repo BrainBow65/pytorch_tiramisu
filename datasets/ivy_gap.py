@@ -39,7 +39,7 @@ class IvyGap(data.Dataset):
         self.transform = transform
         self.target_transform = target_transform
         self.loader = loader
-        self.imgs = list((self.root/self.split).glob("*.jpg"))
+        self.imgs = list((self.root/self.split).glob("*.png"))
 
     def __getitem__(self, index):
         path = str(self.imgs[index])
@@ -47,7 +47,6 @@ class IvyGap(data.Dataset):
         target_path = path.replace(self.split, self.split + 'annot')
         target_path = target_path.replace("HE", "TFA")
         target = self.loader(target_path)  # Image.open ?
-
 
         if self.joint_transform is not None:
             img, target = self.joint_transform([img, target])

@@ -16,8 +16,9 @@ palette += [0, 0, 0] * (256 - n_colors - 1)  # pad to 256 colors
 palette_img = Image.new("P", (1, 1))
 palette_img.putpalette(palette)
 
-DIR_ANNOTATED = Path("../Ivy_gap_dataset/Annotated")
-DIR_HE = Path("../Ivy_gap_dataset/H&Es")
+ROOT_DIR = Path(__file__).parent.parent/"Ivy_gap_dataset"
+DIR_ANNOTATED = ROOT_DIR/"Annotated"
+DIR_HE = ROOT_DIR/"H&Es"
 
 DIR_RESIZED_HE = Path(DIR_HE / "Resized")
 DIR_RESIZED_HE.mkdir(exist_ok=True)
