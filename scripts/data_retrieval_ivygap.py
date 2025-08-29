@@ -12,8 +12,7 @@ SAVE_DIR_ANNOTATED.mkdir(parents=True, exist_ok=True)
 
 
 def fetch_specimen_ids():
-    """Fetch all specimen IDs from the 'Anatomic Structures ISH Survey'."""
-    url = f"{BASE_URL}?criteria=model::Specimen,rma::criteria,specimen_types[name$eq'Anatomic Structures ISH Survey'],rma::options[num_rows$eqall]"
+    url = f"{BASE_URL}?criteria= model::Specimen, rma::criteria,products[name$eq'Glioblastoma'], rma::options[num_rows$eqall]"
     response = requests.get(url)
     data = response.json()
     return [specimen["external_specimen_name"] for specimen in data["msg"]]
@@ -55,13 +54,13 @@ def main():
                 download_image(
                     image_id,
                     None,
-                    SAVE_DIR_HE / f"{specimen_id}_HE_{image_id}.jpg",
+                    SAVE_DIR_HE / f"{specimen_id}_HE_{image_id}.png",
                 )
                 # Download TumorFeatureAnnotation image
                 download_image(
                     image_id,
                     "tumor_feature_annotation",
-                    SAVE_DIR_ANNOTATED / f"{specimen_id}_TFA_{image_id}.jpg",
+                    SAVE_DIR_ANNOTATED / f"{specimen_id}_TFA_{image_id}.png",
                 )
 
 
